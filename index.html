@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hospital Appointment Booking</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; }
+    header { background:#0b74de; color:white; padding:20px; text-align:center; }
+    main { max-width:900px; margin:20px auto; padding:0 15px; }
+    h1 { margin-bottom:10px; }
+    .hospital-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px; }
+    .card { border:1px solid #ccc; border-radius:8px; padding:15px; background:#f9f9f9; }
+    .card h3 { margin-top:0; }
+    .btn { display:inline-block; margin-top:10px; padding:8px 12px; background:#0b74de; color:white; border-radius:5px; text-decoration:none; }
+    .btn:hover { background:#084c9e; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏥 Hospital Appointment Booking</h1>
+    <nav style="margin-top:10px;">
+  <a href="index.html" style="color:white; text-decoration:none; background:#084c9e; padding:8px 14px; border-radius:6px;">🏠 Home</a>
+</nav>
+    <p>Find hospitals and book doctors easily</p>
+  </header>
+
+  <main>
+  <h2>Search Hospitals</h2>
+  <input type="text" id="searchBox" placeholder="Search by hospital or specialty..." style="width:100%; padding:10px; margin-bottom:20px; border:1px solid #ccc; border-radius:5px;" />
+
+  <div class="hospital-list" id="hospitalList">
+    <div class="card">
+      <h3>Shaukat Khanum Hospital</h3>
+      <p>Specialties: Cancer, Oncology, Surgery</p>
+      <a href="hospital.html?name=shaukat-khanum" class="btn">View Doctors</a>
+    </div>
+    <div class="card">
+      <h3>Services Hospital Lahore</h3>
+      <p>Specialties: Cardiology, Neurology, Pediatrics</p>
+      <a href="hospital.html?name=services" class="btn">View Doctors</a>
+    </div>
+    <div class="card">
+      <h3>Mayo Hospital</h3>
+      <p>Specialties: General, Emergency, Orthopedics</p>
+      <a href="hospital.html?name=mayo" class="btn">View Doctors</a>
+    </div>
+  </div>
+</main>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafc;
+    color: #222;
+  }
+
+  header {
+    background: linear-gradient(90deg, #0b74de, #055bb5);
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1, h2, h3 {
+    margin: 10px 0;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+
+  input[type="text"], input[type="date"], input[type="time"], select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+  }
+
+  .hospital-list, .doctor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 15px;
+    background: #0b74de;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .btn:hover {
+    background: #084c9e;
+  }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 20px; }
+    main { padding: 0 10px; }
+  }
+</style>
+
+<footer style="background:#0b74de; color:white; text-align:center; padding:15px; margin-top:30px;">
+  <p>© 2025 Hospital Appointment System | Made with ❤️ in Pakistan</p>
+</footer>
+
+</body>
+</html>
