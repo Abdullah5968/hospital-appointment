@@ -136,43 +136,47 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // Your Firebase config (paste your real info here)
+  // Your Firebase config
   const firebaseConfig = {
-  apiKey: "AIzaSyBcPQMwMHK_qqthbB0dJuqdKkuOtBuTiso",
-  authDomain: "hospital-appointment-386fd.firebaseapp.com",
-  projectId: "hospital-appointment-386fd",
-  storageBucket: "hospital-appointment-386fd.firebasestorage.app",
-  messagingSenderId: "926215061125",
-  appId: "1:926215061125:web:b5e9099606dfa12826b3ec"
-};
+    apiKey: "AIzaSyBcPQMwMHK_qqthbB0dJuqdKkuOtBuTiso",
+    authDomain: "hospital-appointment-386fd.firebaseapp.com",
+    projectId: "hospital-appointment-386fd",
+    storageBucket: "hospital-appointment-386fd.firebasestorage.app",
+    messagingSenderId: "926215061125",
+    appId: "1:926215061125:web:b5e9099606dfa12826b3ec"
+  };
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
   // Form submission
-  document.querySelector("form").addEventListener("submit", async (e) => {
+  document.querySelector("#appointmentForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const patientName = document.getElementById("patientName").value;
-    const hospital = document.getElementById("hospitalSelect").value;
-    const doctor = document.getElementById("doctorSelect").value;
-    const date = document.getElementById("appointmentDate").value;
+    // Get values from form
+    const patientName = document.getElementById("name").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
 
     try {
       await addDoc(collection(db, "appointments"), {
         patientName,
-        hospital,
-        doctor,
-        date
+        date,
+        time,
+        createdAt: new Date()
       });
-      alert("Appointment booked successfully!");
+
+      document.getElementById("receipt").style.display = "block";
+      document.getElementById("receiptText").innerText =
+        `Appointment booked for ${patientName} on ${date} at ${time}`;
       e.target.reset();
     } catch (error) {
       alert("Error saving appointment: " + error.message);
     }
   });
 </script>
+
 
 </body>
 </html>
