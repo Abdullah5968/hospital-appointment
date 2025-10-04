@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hospital Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f6f8; margin:0; padding:0; }
+    header { background:#0b74de; color:white; text-align:center; padding:20px; }
+    main { max-width:400px; margin:60px auto; background:white; padding:30px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    input { width:100%; padding:10px; margin-top:10px; border:1px solid #ccc; border-radius:5px; }
+    button { width:100%; margin-top:20px; padding:10px; background:#0b74de; color:white; border:none; border-radius:5px; cursor:pointer; }
+    button:hover { background:#084c9e; }
+    footer { background:#0b74de; color:white; text-align:center; padding:15px; margin-top:30px; }
+  </style>
+</head>
+<body>
+  <header><h1>🏥 Hospital Admin Login</h1></header>
+  <main>
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button id="loginBtn">Login</button>
+  </main>
+  <footer><p>© 2025 Hospital Appointment System</p></footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBcPQMwMHK_qqthbB0dJuqdKkuOtBuTiso",
+      authDomain: "hospital-appointment-386fd.firebaseapp.com",
+      projectId: "hospital-appointment-386fd",
+      storageBucket: "hospital-appointment-386fd.firebasestorage.app",
+      messagingSenderId: "926215061125",
+      appId: "1:926215061125:web:b5e9099606dfa12826b3ec"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("loginBtn").addEventListener("click", async () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "admin.html";
+      } catch (error) {
+        alert("Login failed: " + error.message);
+      }
+    });
+  </script>
+</body>
+</html>

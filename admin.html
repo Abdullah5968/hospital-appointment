@@ -16,6 +16,12 @@
   </style>
 </head>
 <body>
+  <script>
+  if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+</script>
+
   <header>
     <h1>🩺 Hospital Admin Dashboard</h1>
   </header>
