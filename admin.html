@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard - Appointments</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f6f8; margin:0; padding:0; }
+    header { background:#0b74de; color:white; text-align:center; padding:20px; }
+    main { max-width:900px; margin:30px auto; background:white; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    table { width:100%; border-collapse:collapse; margin-top:20px; }
+    th, td { border:1px solid #ddd; padding:10px; text-align:left; }
+    th { background:#0b74de; color:white; }
+    tr:nth-child(even) { background:#f9f9f9; }
+    footer { background:#0b74de; color:white; text-align:center; padding:15px; margin-top:30px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🩺 Hospital Admin Dashboard</h1>
+  </header>
+
+  <main>
+    <h2>All Booked Appointments</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Patient Name</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+      <tbody id="appointmentsTable"></tbody>
+    </table>
+  </main>
+
+  <footer>
+    <p>© 2025 Hospital Appointment System | Made with ❤️ in Pakistan</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBcPQMwMHK_qqthbB0dJuqdKkuOtBuTiso",
+      authDomain: "hospital-appointment-386fd.firebaseapp.com",
+      projectId: "hospital-appointment-386fd",
+      storageBucket: "hospital-appointment-386fd.firebasestorage.app",
+      messagingSenderId: "926215061125",
+      appId: "1:926215061125:web:b5e9099606dfa12826b3ec"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadAppointments() {
+      const tableBody = document.getElementById("appointmentsTable");
+      const snapshot = await getDocs(collection(db, "appointments"));
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const row = `
+          <tr>
+            <td>${data.patientName}</td>
+            <td>${data.date}</td>
+            <td>${data.time}</td>
+            <td>${data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleString() : "—"}</td>
+          </tr>`;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    loadAppointments();
+  </script>
+</body>
+</html>
